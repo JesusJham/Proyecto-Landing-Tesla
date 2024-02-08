@@ -4,7 +4,9 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<header class="py-4 px-10 top-0 flex items-center fixed w-full justify-between">
+		<header
+			class="py-2 px-10 top-0 flex items-center fixed w-full justify-between z-40 text-white"
+		>
 			<div class="flex flex-grow basis-0">
 				<svg
 					class="h-6 w-28"
@@ -16,7 +18,9 @@ import Layout from "../layouts/Layout.astro";
 				>
 			</div>
 			<nav>
-				<ul class="flex text-sm [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2">
+				<ul
+					class="flex text-sm [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
+				>
 					<li><a href="#">Model S</a></li>
 					<li><a href="#">Model 3</a></li>
 					<li><a href="#">Model X</a></li>
@@ -26,7 +30,9 @@ import Layout from "../layouts/Layout.astro";
 				</ul>
 			</nav>
 			<nav class="flex flex-grow justify-end basis-0">
-				<ul class="flex text-sm [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2">
+				<ul
+					class="flex text-sm [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
+				>
 					<li><a href="#">Soporte</a></li>
 					<li><a href="#">Tienda</a></li>
 					<li><a href="#">Cuenta</a></li>
@@ -34,5 +40,28 @@ import Layout from "../layouts/Layout.astro";
 				</ul>
 			</nav>
 		</header>
+		<section
+			class="bg-black h-screen w-screen text-center relative overflow-hidden"
+		>
+			<header class="z-30 relative">
+				<h2 class="text-white pt-40 text-[40px] font-medium">
+					Disfrute de Tesla
+				</h2>
+				<p class="text-white text-sm">
+					Programa una prueba de conducción hoy mismo
+				</p>
+			</header>
+			<footer class="z-30 relative">
+				<a class="text-white" href="#">Prueba de conducción</a>
+			</footer>
+			<div class="top-0 bottom-0 absolute h-screen w-screen z-10">
+				<video
+					autoplay
+					muted
+					loop
+					src="/video.mp4"
+					class="h-full w-full object-cover"></video>
+			</div>
+		</section>
 	</main>
 </Layout>
