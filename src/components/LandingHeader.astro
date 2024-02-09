@@ -3,6 +3,7 @@ import Logo from "./Logo.astro";
 ---
 
 <header
+    id="landing-header"
     class="py-2 px-10 top-0 flex items-center fixed w-full justify-between z-40 text-white"
 >
     <div class="flex flex-grow basis-0">
@@ -10,7 +11,7 @@ import Logo from "./Logo.astro";
     </div>
     <nav>
         <ul
-            class="flex text-sm [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
+            class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
         >
             <li><a href="#">Model S</a></li>
             <li><a href="#">Model 3</a></li>
@@ -22,7 +23,7 @@ import Logo from "./Logo.astro";
     </nav>
     <nav class="flex flex-grow justify-end basis-0">
         <ul
-            class="flex text-sm [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
+            class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
         >
             <li><a href="#">Soporte</a></li>
             <li><a href="#">Tienda</a></li>
@@ -31,3 +32,32 @@ import Logo from "./Logo.astro";
         </ul>
     </nav>
 </header>
+
+<script>
+    const $header = document.querySelector("#landing-header") as HTMLElement;
+    const observerOptions = {
+        root: null,
+        rootMargin: "0px", // en cuanto se vea el elemento
+        threshold: 0.9, // porcentaje de visibilidad
+    };
+
+    console.log(observerOptions);
+
+    // Creamos un nuevo observador de intersección
+    const observer = new IntersectionObserver((entries) => {
+        // La función de devolución de llamada se ejecuta cada vez que se produce una intersección
+        entries.forEach((entry) => {
+            // Para cada entrada (elemento observado)
+            const { isIntersecting } = entry;  // Extraemos la propiedad isIntersecting de la entrada
+            if (isIntersecting) {
+                // Si el elemento está intersectando con el viewport
+                const color = entry.target.getAttribute("data-header-color"); // Obtenemos el color del atributo data-header-color del elemento
+                $header.style.color = color;  // Cambiamos el color del texto del encabezado al color obtenido
+            }
+        });
+    }, observerOptions); // Pasamos las opciones del observador como segundo argumento
+    
+    // Observamos los elementos con la clase .landing-section y activamos el observador para cada uno de ellos
+    const $section = document.querySelectorAll(".landing-section");
+    $section.forEach((section) => observer.observe(section));
+</script>
