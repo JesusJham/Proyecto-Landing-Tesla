@@ -34,36 +34,44 @@ import Logo from "./Logo.astro";
 
     <div
         id="menu-backdrop"
-        class={`absolute bg-black/5 backdrop-blur-lg rounded left-[var(--left)] top-[var(--top)] w-[var(--width)] h-[var(--height)] transition-all duration-300 ease-in-out opacity-0`}
+        class={`absolute bg-black/5 backdrop-blur-lg rounded translate-x-[var(--left)] translate-y-[var(--top)] left-0 top-0 w-[var(--width)] h-[var(--height)] transition-all duration-300 ease-in-out opacity-0 -z-10`}
     >
     </div>
 </header>
 
 <script>
+    // Selecciona todos los elementos <li> dentro del elemento con id "landing-header" y los almacena en la variable listItem
     const listItem = document.querySelectorAll("#landing-header li");
+
+    // Selecciona el elemento con id "menu-backdrop" y lo almacena en la variable menuBackdrop
     const menuBackdrop = document.querySelector(
         "#menu-backdrop",
     ) as HTMLElement;
 
+    // Itera sobre cada elemento de listItem
     listItem.forEach((item) => {
+        // Agrega un evento de escucha para cuando el cursor entra en un elemento de lista (mouseenter)
         item.addEventListener("mouseenter", () => {
+            // Obtiene las coordenadas y dimensiones del elemento de lista
             const { left, top, width, height } = item.getBoundingClientRect();
-            const { clientHeight, clientWidth } = item
 
-            console.log({ left, top, width, height });
-            console.log({ clientHeight, clientWidth });
-
+            // Establece las variables CSS para el desplazamiento y tamaño del fondo del menú
             menuBackdrop.style.setProperty("--left", `${left}px`);
             menuBackdrop.style.setProperty("--top", `${top}px`);
             menuBackdrop.style.setProperty("--width", `${width}px`);
             menuBackdrop.style.setProperty("--height", `${height}px`);
-            menuBackdrop.style.visibility = "visible" //  Puede tener uno de dos valores: "visible" o "hidden".
+
+            // Establece la opacidad y visibilidad del fondo del menú para hacerlo visible
+            menuBackdrop.style.opacity = "1";
+            menuBackdrop.style.visibility = "visible";
         });
 
-        item.addEventListener("mouseleave", () =>{
-            menuBackdrop.style.opacity = "0"
-            menuBackdrop.style.visibility = "hidden"
-        })
+        // Agrega un evento de escucha para cuando el cursor sale de un elemento de lista (mouseleave)
+        item.addEventListener("mouseleave", () => {
+            // Oculta el fondo del menú cambiando la opacidad y visibilidad
+            menuBackdrop.style.opacity = "0";
+            menuBackdrop.style.visibility = "hidden";
+        });
     });
 </script>
 
