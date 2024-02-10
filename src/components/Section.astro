@@ -1,6 +1,7 @@
 ---
-const { color, title, subtitle } = Astro.props;
+const { color, title, subtitle, subtitleTag, decoration} = Astro.props;
 const textColor = `text-${color}`;
+const textDecoration = decoration;
 ---
 
 <section
@@ -12,9 +13,21 @@ const textColor = `text-${color}`;
             <h2 class={`${textColor} pt-40 text-[40px] font-medium`}>
                 {title}
             </h2>
-            <p class={`${textColor} text-sm`}>
-                {subtitle}
-            </p>
+            <!-- Utilizar un condicional para renderizar el subtítulo como <a> o <p> según el valor de subtitleTag -->
+            {
+                subtitleTag === "a" ? (
+                    <a
+                        href="#"
+                        class={`${textColor} text-sm underline ${textDecoration} hover:decoration-2`}
+                    >
+                        {subtitle}
+                    </a>
+                ) : (
+                    <p class={`${textColor} text-sm`}>
+                        {subtitle}
+                    </p>
+                )
+            }
         </header>
         <footer class="flex flex-col flex-grow flex-nowrap justify-end pb-20">
             <slot name="footer" />

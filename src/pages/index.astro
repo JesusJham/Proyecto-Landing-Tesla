@@ -3,6 +3,10 @@ import LandingHeader from "../components/LandingHeader.astro";
 import HeroSection from "../components/HeroSection.astro";
 import Layout from "../layouts/Layout.astro";
 import ChargeSection from "../components/ChargeSection.astro";
+import Accesorios from "../components/Accesorios.astro";
+import Powerwall from "../components/Powerwall.astro";
+import Enjoyment from "../components/Enjoyment.astro";
+import ModeX from "../components/ModeX.astro";
 ---
 
 <Layout title="Tesla - El coche de tu sueño.">
@@ -14,13 +18,16 @@ import ChargeSection from "../components/ChargeSection.astro";
 			<HeroSection />
 		</div>
 		<div class="snap-center">
-			<ChargeSection />
+			<ModeX />
 		</div>
 		<div class="snap-center">
-			<HeroSection />
+			<Enjoyment />
 		</div>
 		<div class="snap-center">
-			<ChargeSection />
+			<Powerwall />
+		</div>
+		<div class="snap-center">
+			<Accesorios />
 		</div>
 	</main>
 </Layout>
